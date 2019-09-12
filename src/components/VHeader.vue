@@ -1,5 +1,10 @@
 <template>
-  <header></header>
+  <header>
+    <nav>
+      <router-link to="/films">Movies</router-link>
+      <router-link to="/about">About</router-link>
+    </nav>
+  </header>
 </template>
 
 <script>
@@ -11,7 +16,12 @@ export default {
 <style lang="scss" scoped>
 header {
   width: 100%;
-  height: 56px;
-  background-color: gold;
+  background-color: $cl-yellow;
+  nav {
+    padding: 16px;
+    a {
+      margin-right: 12px;
+    }
+  }
 }
 </style>

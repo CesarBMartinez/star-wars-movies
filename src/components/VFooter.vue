@@ -20,8 +20,11 @@ export default {
 footer {
   color: white;
   text-align: center;
-  background-color: gray;
+  background-color: $cl-blue;
   width: 100%;
   margin-top: auto;
+  a {
+    color: $cl-yellow;
+  }
 }
 </style>

@@ -1,9 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Films from '../views/Films.vue';
 
 Vue.use(VueRouter);
 
-const routes = [];
+const routes = [
+  {
+    path: '/films',
+    name: 'films',
+    component: Films
+  }
+];
 
 const router = new VueRouter({
   mode: 'history',

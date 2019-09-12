@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $bg-color;
+  background-color: $cl-bg-body;
 }
 
 #app {
@@ -19,8 +19,15 @@ body {
   display: flex;
   width: 100%;
   max-width: 1170px;
-  background-color: $container-bg;
+  background-color: $cl-bg-container;
   padding: 12px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 12px auto;
+}
+
+a {
+  text-decoration: none;
+  color: $cl-blue;
+  &:hover {
+    text-decoration: underline;
+  }
 }
