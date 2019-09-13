@@ -45,7 +45,10 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-console": "warn"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },

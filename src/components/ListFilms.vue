@@ -18,19 +18,12 @@
 </template>
 
 <script>
-import swapi from '@/utils/swapi.js';
-
 export default {
   name: 'list-films',
-  data() {
-    return {
-      films: []
-    };
-  },
-  created() {
-    swapi.films().then(data => {
-      this.films = data.results;
-    });
+  computed: {
+    films() {
+      return this.$store.getters.films;
+    }
   }
 };
 </script>
