@@ -18,7 +18,9 @@ header {
   width: 100%;
   background-color: $cl-yellow;
   nav {
-    padding: 16px;
+    padding: 16px 0;
+    max-width: $container-width;
+    margin: 0 auto;
     a {
       margin-right: 12px;
     }

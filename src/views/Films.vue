@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Star Wars Movies</h1>
+    <h1>Movies</h1>
     <list-films></list-films>
   </section>
 </template>
@@ -16,4 +16,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h1 {
+  color: $cl-yellow;
+}
+</style>
