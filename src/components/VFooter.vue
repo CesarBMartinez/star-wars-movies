@@ -2,7 +2,10 @@
   <footer>
     <p>
       Developed by
-      <a href="https://github.com/CesarBMartinez/" target="_blank"
+      <a
+        href="https://github.com/CesarBMartinez/"
+        target="_blank"
+        rel="noopener"
         >César Martinez</a
       >
       with Vue, Swapi, ☕ and ❤️

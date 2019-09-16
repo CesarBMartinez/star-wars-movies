@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/films',
+    alias: '/',
     name: 'films',
     component: Films
   }
