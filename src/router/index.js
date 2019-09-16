@@ -10,6 +10,10 @@ const routes = [
     alias: '/',
     name: 'films',
     component: Films
+  },
+  {
+    path: '/films/:id',
+    name: 'FilmDetails'
   }
 ];
 

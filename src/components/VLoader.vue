@@ -44,7 +44,7 @@ $animation-time: 1s;
 
 @keyframes scaleLoader {
   from {
-    transform: scale(0.2);
+    transform: scale(0);
   }
   to {
     transform: scale(1);
