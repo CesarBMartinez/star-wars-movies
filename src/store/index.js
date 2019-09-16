@@ -4,10 +4,19 @@ import swapi from '../utils/swapi';
 
 Vue.use(Vuex);
 
+const filmsCache = localStorage.getItem('films')
+  ? JSON.parse(localStorage.getItem('films'))
+  : false;
+
 export default new Vuex.Store({
   state: {
-    films: [],
-    isLoading: true
+    films: filmsCache || [],
+    characters: [],
+    planets: [],
+    starships: [],
+    vehicles: [],
+    species: [],
+    isLoading: !filmsCache
   },
   mutations: {
     LOADING(state, isLoading) {
@@ -15,13 +24,15 @@ export default new Vuex.Store({
     },
     SET_FILMS(state, films) {
       state.films = films.results;
+      localStorage.setItem('films', JSON.stringify(films.results));
     }
   },
   actions: {
     async fetchData({ commit }) {
-      const response = await Promise.all([swapi.get('films')]);
-      // Fill films array
-      commit('SET_FILMS', response[0]);
+      const response = await swapi.films();
+
+      // Set films array
+      commit('SET_FILMS', response);
 
       // Hide Loader
       commit('LOADING', false);
@@ -33,6 +44,9 @@ export default new Vuex.Store({
     },
     films(state) {
       return state.films;
+    },
+    getFilm: state => episodeId => {
+      return state.films.filter(film => film.episode_id === episodeId);
     }
   }
 });

@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  color: $cl-yellow;
+  color: white;
 }
 </style>

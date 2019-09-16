@@ -89,7 +89,6 @@ export default {
       text-align: center;
     }
     .cover {
-      max-width: 100%;
       &:hover {
         box-shadow: 0 0 10px $cl-body;
       }
