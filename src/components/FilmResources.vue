@@ -39,6 +39,7 @@ export default {
 .resources {
   width: 100%;
   margin: 20px 6px 0;
+  border-top: 1px solid $cl-gray-cc;
   > h2 {
     text-align: center;
   }
