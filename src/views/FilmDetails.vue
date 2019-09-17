@@ -33,15 +33,19 @@
             <strong>{{ film.release_date | formatDate('dd/MM/yyyy') }}</strong>
           </time>
         </h5>
-      </div>
 
-      <film-resources :film="film"></film-resources>
+        <!-- HTML5 Accordion -->
+        <details open>
+          <summary>Opening Crawl Transcript</summary>
+          <p>{{ film.opening_crawl }}</p>
+        </details>
+      </div>
     </div>
+    <film-resources :film="film"></film-resources>
   </section>
 </template>
 
 <script>
-import swapi from '../utils/swapi';
 import FilmResources from '../components/FilmResources.vue';
 
 export default {
@@ -85,15 +89,29 @@ export default {
       font-weight: 400;
     }
   }
-  .lists {
-    display: flex;
-    flex-wrap: wrap;
-    .list {
-      flex: 0 0 50%;
-      list-style: none;
+  details {
+    $padding: 0.625rem;
+    border: 1px solid $cl-gray-cc;
+    border-radius: 3px;
+    padding: $padding $padding 0;
+    width: 100%;
+    max-width: 320px;
+    display: inline-block;
+    summary {
+      font-weight: bold;
+      margin: (-$padding) (-$padding) 0;
+      padding: $padding;
+      cursor: pointer;
     }
-    ul {
-      padding-left: 20px;
+    &[open] {
+      padding: $padding;
+      summary {
+        border-bottom: 1px solid $cl-gray-cc;
+        margin-bottom: $padding;
+      }
+    }
+    p {
+      white-space: pre-line;
     }
   }
 }
@@ -104,7 +122,7 @@ figure {
     display: block;
   }
   figcaption {
-    background-color: #ccc;
+    background-color: $cl-gray-cc;
     text-align: center;
     padding: 5px;
   }

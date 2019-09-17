@@ -1,81 +1,32 @@
 <template>
-  <div>
+  <section class="resources">
+    <h2>Movie Resources</h2>
     <!-- Lists -->
     <div class="lists" v-if="film.resources">
-      <div class="characte3rs list">
-        <h3>Characters</h3>
-        <ul v-if="film.characters.length > 0">
-          <li
-            v-for="(character, index) in film.resources.characters"
-            :key="index"
-          >
-            {{ character.name }}
-          </li>
+      <div class="list" v-for="(list, key) in film.resources" :key="key">
+        <h3>{{ key }} List</h3>
+        <small>{{ `(number of ${key}: ${list.length})` }}</small>
+        <ul v-if="list.length > 0">
+          <li v-for="(item, index) in list" :key="index">{{ item.name }}</li>
         </ul>
         <p v-else>
-          <em>Empty</em>
-        </p>
-      </div>
-
-      <div class="planets list">
-        <h3>Planets</h3>
-        <ul v-if="film.planets.length > 0">
-          <li v-for="(planet, index) in film.resources.planets" :key="index">
-            {{ planet.name }}
-          </li>
-        </ul>
-        <p v-else>
-          <em>Empty</em>
-        </p>
-      </div>
-
-      <div class="starships list">
-        <h3>Starships</h3>
-        <ul v-if="film.starships.length > 0">
-          <li
-            v-for="(starship, index) in film.resources.starships"
-            :key="index"
-          >
-            {{ starship.name }}
-          </li>
-        </ul>
-        <p v-else>
-          <em>Empty</em>
-        </p>
-      </div>
-
-      <div class="vehicles list">
-        <h3>Vehicles</h3>
-        <ul v-if="film.vehicles.length > 0">
-          <li v-for="(vehicle, index) in film.resources.vehicles" :key="index">
-            {{ vehicle.name }}
-          </li>
-        </ul>
-        <p v-else>
-          <em>Empty</em>
-        </p>
-      </div>
-
-      <div class="species list">
-        <h3>Species</h3>
-        <ul v-if="film.species.length > 0">
-          <li v-for="(specie, index) in film.resources.species" :key="index">
-            {{ specie.name }}
-          </li>
-        </ul>
-        <p v-else>
-          <em>Empty</em>
+          <em>{{ emptyMessage }}</em>
         </p>
       </div>
     </div>
-    <p v-else>Loading resources...</p>
-  </div>
+    <h3 class="loading" v-else>Loading resources...</h3>
+  </section>
 </template>
 
 <script>
 export default {
   name: 'film-resources',
   props: ['film'],
+  data() {
+    return {
+      emptyMessage: 'No data found'
+    };
+  },
   created() {
     if (!this.film.resources) {
       this.$store.dispatch('fetchResources', this.film.episode_id);
@@ -84,4 +35,35 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.resources {
+  width: 100%;
+  margin: 20px 6px 0;
+  > h2 {
+    text-align: center;
+  }
+}
+
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 100%;
+  justify-content: space-between;
+  .list {
+    padding: 0 12px;
+    h3 {
+      text-transform: capitalize;
+      margin-bottom: 0px;
+    }
+  }
+  ul {
+    padding-left: 0px;
+    list-style: none;
+  }
+}
+
+.loading {
+  text-align: center;
+  color: $cl-gray;
+}
+</style>
