@@ -9,11 +9,13 @@ class Swapi {
     return data;
   }
 
+  // Get all movies
   films() {
     return this.get(`${ROOT_URL}/films`);
   }
 
-  fetchArray(resourcesURL = []) {
+  // Get content from resources URL array
+  fetchResources(resourcesURL = []) {
     const promises = [];
     for (let i = 0; i < resourcesURL.length; i++) {
       promises.push(this.get(resourcesURL[i]));

@@ -4,19 +4,10 @@ import swapi from '../utils/swapi';
 
 Vue.use(Vuex);
 
-const filmsCache = localStorage.getItem('films')
-  ? JSON.parse(localStorage.getItem('films'))
-  : false;
-
 export default new Vuex.Store({
   state: {
-    films: filmsCache || [],
-    characters: [],
-    planets: [],
-    starships: [],
-    vehicles: [],
-    species: [],
-    isLoading: !filmsCache
+    films: [],
+    isLoading: true
   },
   mutations: {
     LOADING(state, isLoading) {
@@ -24,7 +15,21 @@ export default new Vuex.Store({
     },
     SET_FILMS(state, films) {
       state.films = films.results;
-      localStorage.setItem('films', JSON.stringify(films.results));
+    },
+    SET_FILM_RESOURCES(state, data) {
+      const filmIndex = state.films.findIndex(
+        film => film.episode_id === data.episodeId
+      );
+      const resources = {
+        characters: data.responses[0],
+        planets: data.responses[1],
+        starships: data.responses[2],
+        vehicles: data.responses[3],
+        species: data.responses[4]
+      };
+
+      // Merge resources into film obj in films array
+      Vue.set(state.films, filmIndex, { ...state.films[filmIndex], resources });
     }
   },
   actions: {
@@ -36,6 +41,20 @@ export default new Vuex.Store({
 
       // Hide Loader
       commit('LOADING', false);
+    },
+    async fetchResources({ state, commit }, episodeId) {
+      const film = state.films.find(film => film.episode_id === episodeId);
+      const promises = [
+        swapi.fetchResources(film.characters),
+        swapi.fetchResources(film.planets),
+        swapi.fetchResources(film.starships),
+        swapi.fetchResources(film.vehicles),
+        swapi.fetchResources(film.species)
+      ];
+      const responses = await Promise.all(promises);
+
+      // Set films array
+      commit('SET_FILM_RESOURCES', { episodeId, responses });
     }
   },
   getters: {
@@ -46,7 +65,7 @@ export default new Vuex.Store({
       return state.films;
     },
     getFilm: state => episodeId => {
-      return state.films.filter(film => film.episode_id === episodeId);
+      return state.films.find(film => film.episode_id === episodeId);
     }
   }
 });

@@ -35,124 +35,29 @@
         </h5>
       </div>
 
-      <!-- Lists -->
-      <div class="lists">
-        <div class="characte3rs list">
-          <h3>Characters</h3>
-          <ul v-if="characters.length > 0 && !isLoading">
-            <li v-for="(character, index) in characters" :key="index">
-              {{ character.name }}
-            </li>
-          </ul>
-          <p v-else-if="isLoading">Loading...</p>
-          <p v-else>
-            <em>Empty</em>
-          </p>
-        </div>
-
-        <div class="planets list">
-          <h3>Planets</h3>
-          <ul v-if="planets.length > 0 && !isLoading">
-            <li v-for="(planet, index) in planets" :key="index">
-              {{ planet.name }}
-            </li>
-          </ul>
-          <p v-else-if="isLoading">Loading...</p>
-          <p v-else>
-            <em>Empty</em>
-          </p>
-        </div>
-
-        <div class="starships list">
-          <h3>Starships</h3>
-          <ul v-if="starships.length > 0 && !isLoading">
-            <li v-for="(starship, index) in starships" :key="index">
-              {{ starship.name }}
-            </li>
-          </ul>
-          <p v-else-if="isLoading">Loading...</p>
-          <p v-else>
-            <em>Empty</em>
-          </p>
-        </div>
-
-        <div class="vehicles list">
-          <h3>Vehicles</h3>
-          <ul v-if="vehicles.length > 0 && !isLoading">
-            <li v-for="(vehicle, index) in vehicles" :key="index">
-              {{ vehicle.name }}
-            </li>
-          </ul>
-          <p v-else-if="isLoading">Loading...</p>
-          <p v-else>
-            <em>Empty</em>
-          </p>
-        </div>
-
-        <div class="species list">
-          <h3>Species</h3>
-          <ul v-if="species.length > 0 && !isLoading">
-            <li v-for="(specie, index) in species" :key="index">
-              {{ specie.name }}
-            </li>
-          </ul>
-          <p v-else-if="isLoading">Loading...</p>
-          <p v-else>
-            <em>Empty</em>
-          </p>
-        </div>
-      </div>
+      <film-resources :film="film"></film-resources>
     </div>
   </section>
 </template>
 
 <script>
 import swapi from '../utils/swapi';
+import FilmResources from '../components/FilmResources.vue';
 
 export default {
   name: 'film-details',
+  components: {
+    FilmResources
+  },
   data() {
     return {
-      characters: [],
-      planets: [],
-      starships: [],
-      vehicles: [],
-      species: [],
-      isLoading: true
+      episodeId: Number(this.$route.params.id)
     };
   },
   computed: {
     film() {
-      const episodeId = Number(this.$route.params.id);
-      const movie = this.$store.getters.getFilm(episodeId)[0];
-      if (movie) {
-        // Characters
-        this.getData(movie, 'characters');
-
-        // Planets
-        this.getData(movie, 'planets');
-
-        // Starships
-        this.getData(movie, 'starships');
-
-        // Vehicles
-        this.getData(movie, 'vehicles');
-
-        // Species
-        this.getData(movie, 'species');
-
-        return movie;
-      }
-      return null;
-    }
-  },
-  methods: {
-    async getData(movie, key) {
-      this.isLoading = true;
-      const response = await swapi.fetchArray(movie[key]);
-
-      this.isLoading = false;
-      this[key] = response;
+      const movie = this.$store.getters.getFilm(this.episodeId);
+      return movie;
     }
   }
 };
