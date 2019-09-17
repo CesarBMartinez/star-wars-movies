@@ -4,7 +4,7 @@ import swapi from '@/utils/swapi';
 global.fetch = fetch;
 
 describe('Swapi', () => {
-  it('get films and check response schema', async () => {
+  it('should get films and check response schema', async () => {
     const response = await swapi.films();
 
     expect(response).toBeDefined();
@@ -27,7 +27,7 @@ describe('Swapi', () => {
     expect(response.results[0]).toMatchObject(expectedObj);
   }, 30000);
 
-  it('get resources url', async () => {
+  it('should get resources url and check length', async () => {
     const resourcesURLs = [
       'https://swapi.co/api/people/1/',
       'https://swapi.co/api/people/3/',
