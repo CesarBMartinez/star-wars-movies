@@ -32,7 +32,7 @@ $animation-time: 1s;
   overflow: hidden;
   img {
     width: 100%;
-    max-height: 100%;
+    max-height: calc(100% - 67px);
     animation: scaleLoader $animation-time ease-in;
   }
   h2 {

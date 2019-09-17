@@ -48,7 +48,14 @@
         >
 
         <!-- Details Link -->
-        <button type="button" class="btn secondary">Opening Crawl</button>
+        <button
+          type="button"
+          class="btn secondary"
+          tabindex="0"
+          @click="$emit('openingCrawl', film)"
+        >
+          Opening Crawl
+        </button>
       </div>
     </article>
   </div>

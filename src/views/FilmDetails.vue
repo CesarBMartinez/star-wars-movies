@@ -44,7 +44,7 @@
           Click the button below to see the opening crawl animation, which was
           made in CSS, or read the episode opening transcript.
         </p>
-        <button type="button" class="btn secondary">
+        <button type="button" class="btn secondary" @click="showOpening = true">
           Opening Crawl Animation
         </button>
       </div>
@@ -55,22 +55,39 @@
         <p>{{ film.opening_crawl }}</p>
       </details>
     </section>
+
+    <!-- Movie Resources -->
     <film-resources :film="film"></film-resources>
+
+    <!-- Opening Crawl Animation -->
+    <opening-crawl
+      :film="film"
+      :show="showOpening"
+      :onClose="onClose"
+    ></opening-crawl>
   </section>
 </template>
 
 <script>
 import FilmResources from '../components/FilmResources.vue';
+import OpeningCrawl from '../components/OpeningCrawl.vue';
 
 export default {
   name: 'film-details',
   components: {
-    FilmResources
+    FilmResources,
+    OpeningCrawl
   },
   data() {
     return {
-      episodeId: Number(this.$route.params.id)
+      episodeId: Number(this.$route.params.id),
+      showOpening: false
     };
+  },
+  methods: {
+    onClose() {
+      this.showOpening = false;
+    }
   },
   computed: {
     film() {
