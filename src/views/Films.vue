@@ -13,12 +13,21 @@
 <script>
 import ListFilms from '../components/ListFilms.vue';
 import OpeningCrawl from '../components/OpeningCrawl.vue';
+import store from '../store';
 
 export default {
   name: 'films',
   components: {
     ListFilms,
     OpeningCrawl
+  },
+  beforeRouteEnter(to, from, next) {
+    if (store.getters.films.length === 0) {
+      store.dispatch('toogleLoader', true);
+      store.dispatch('fetchData').then(() => next());
+    } else {
+      next();
+    }
   },
   data() {
     return {

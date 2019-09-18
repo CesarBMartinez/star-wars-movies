@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     films: [],
-    isLoading: true
+    isLoading: false
   },
   mutations: {
     LOADING(state, isLoading) {
@@ -33,14 +33,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async fetchData({ commit }) {
+    async fetchData({ commit, dispatch }) {
       const response = await swapi.films();
 
       // Set films array
       commit('SET_FILMS', response);
 
       // Hide Loader
-      commit('LOADING', false);
+      dispatch('toogleLoader', false);
     },
     async fetchResources({ state, commit }, episodeId) {
       const film = state.films.find(film => film.episode_id === episodeId);
@@ -55,6 +55,9 @@ export default new Vuex.Store({
 
       // Set films array
       commit('SET_FILM_RESOURCES', { episodeId, responses });
+    },
+    toogleLoader({ commit }, value = false) {
+      commit('LOADING', value);
     }
   },
   getters: {

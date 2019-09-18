@@ -29,15 +29,11 @@ export default {
     VFooter,
     VHeader,
     VLoader
-  },
-  created() {
-    this.$store.dispatch('fetchData');
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease-in;
   transition-delay: 0.75s;
