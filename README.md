@@ -74,9 +74,9 @@ Command:
 npm run test:unit
 ```
 
-## Linter and Prettier
+## Linter and Prettier - Code Quality
 
-Using ESLint for code-quality rules.
+Using ESLint for code quality rules.
 
 Using Prettier for code style.
 
@@ -85,6 +85,13 @@ Command:
 ```
 npm run lint
 ```
+
+#### Git Hooks
+
+Using Git Hooks to ensure the code quality.
+
+- pre-commit: run lint
+- pre-push: run tests
 
 ### TODO - next versions
 
