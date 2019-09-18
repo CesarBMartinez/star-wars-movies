@@ -26,7 +26,7 @@
       >
     </p>
     <p>
-      The movies's covers were downloaded from the
+      The covers of the movies were downloaded from the
       <a href="https://swapi.co/" target="_blank" rel="noopener">Coverwhiz.</a>
     </p>
     <p>Star Wars and all associated names are copyright Lucasfilm ltd.</p>
