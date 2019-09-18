@@ -16,7 +16,7 @@
     <section class="crawl-container">
       <div class="crawl-content">
         <div class="title">
-          <p>Episode {{ film.episode_id }}</p>
+          <p>Episode {{ film.episode_id | numberToRoman }}</p>
           <h1>{{ film.title }}</h1>
         </div>
 

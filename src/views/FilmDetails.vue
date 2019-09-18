@@ -13,7 +13,7 @@
 
     <section class="right-col">
       <div class="movie-team">
-        <h1>{{ `Episode ${film.episode_id}: ${film.title}` }}</h1>
+        <h1>Episode {{ film.episode_id | numberToRoman }}: {{ film.title }}</h1>
         <!-- Director -->
         <h4 class="director">
           Directed by:
