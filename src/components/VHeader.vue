@@ -42,6 +42,7 @@ header {
   nav {
     a {
       margin: 0 12px;
+      color: $cl-body;
     }
   }
 }
