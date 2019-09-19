@@ -20,6 +20,8 @@ export default new Vuex.Store({
       const filmIndex = state.films.findIndex(
         film => film.episode_id === data.episodeId
       );
+
+      // create a resources obj
       const resources = {
         characters: data.responses[0],
         planets: data.responses[1],
@@ -44,6 +46,8 @@ export default new Vuex.Store({
     },
     async fetchResources({ state, commit }, episodeId) {
       const film = state.films.find(film => film.episode_id === episodeId);
+
+      // fetch film resources
       const promises = [
         swapi.fetchResources(film.characters),
         swapi.fetchResources(film.planets),
@@ -53,7 +57,7 @@ export default new Vuex.Store({
       ];
       const responses = await Promise.all(promises);
 
-      // Set films array
+      // Set films resources
       commit('SET_FILM_RESOURCES', { episodeId, responses });
     },
     toogleLoader({ commit }, value = false) {
