@@ -46,13 +46,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$animation-time: 50s;
+
 .opening-crawl {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: $cl-bg-body;
+  background-color: black;
   z-index: 2;
 
   .fade {
@@ -81,17 +83,25 @@ export default {
       position: relative;
       top: 9999px;
       transform-origin: 50% 100%;
-      animation: crawl 60s linear;
+      animation: crawl $animation-time linear infinite;
+
       .title {
         text-align: center;
+        margin: 0 0 100px;
         h1 {
           font-size: 1.3em;
-          margin: 0 0 100px;
           text-transform: uppercase;
         }
       }
       .crawl-text {
         white-space: pre-line;
+      }
+
+      @media screen and (max-width: 767px) {
+        transform-origin: 100% 100%;
+        .title {
+          font-size: 1em;
+        }
       }
     }
   }
