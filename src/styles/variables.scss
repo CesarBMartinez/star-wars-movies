@@ -1,0 +1,10 @@
+/*
+ * Shared global variables to all SCSS styles
+ * See vue.config.js
+ */
+
+@import 'colors';
+
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$container-width: 1170px;
