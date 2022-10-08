@@ -1,6 +1,6 @@
 /* SWAPI Wrapper with fetch */
 
-const ROOT_URL = 'https://swapi.co/api';
+const ROOT_URL = 'https://swapi.dev/api';
 
 class Swapi {
   async get(url, useRoot = false) {
